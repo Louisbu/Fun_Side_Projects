@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="2060/src"/>
+	<classpathentry kind="src" path="ArithemetcGame/src"/>
+	<classpathentry kind="src" path="Calculate-Pi/src"/>
+	<classpathentry kind="src" path="GUI/src"/>
+	<classpathentry kind="src" path="Uno/src"/>
+	<classpathentry kind="output" path="2060/bin"/>
+</classpath>

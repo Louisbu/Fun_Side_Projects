@@ -4,11 +4,11 @@ import java.util.*;
 public class Deck {
 
 	protected ArrayList<Card> deck;
-	CardGenerator cardGen = new CardGenerator();
+	CardGenerator cardGen;
 
 	public Deck(int size, int numSpecialCards) {
 		deck = new ArrayList<Card>(size);
-		CardGenerator cardGen = new CardGenerator();
+		cardGen = new CardGenerator();
 		if (numSpecialCards == 0) {
 			for (int i = 0; i < size; i++) {
 				deck.add(new Card(cardGen.newRegularCard()));
@@ -55,19 +55,20 @@ public class Deck {
 
 	public Card drawCard() {
 		Card temp = deck.get(0);
+		cardRegen();
 		deck.remove(0);
 		return temp;
 	}
 
 	public void cardRegen() {
-		
+
 		if (deck.size() < 20) {
 			for (int i = 0; i < 50; i++) {
 				deck.add(new Card(cardGen.newRegularCard()));
 			}
-//			for (int i = 0; i < 10; i++) {
-//				deck.add(new Card(cardGen.newSpecialCard()));
-//			}
+			// for (int i = 0; i < 10; i++) {
+			// deck.add(new Card(cardGen.newSpecialCard()));
+			// }
 		}
 	}
 }

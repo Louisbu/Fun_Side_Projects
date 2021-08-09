@@ -8,17 +8,19 @@ public class UnoTester {
 		System.out.println("How many players are there? (Max: 8; Min 3)");
 		int numPlayers = sc.nextInt();
 
-//		CardGenerator game = new CardGenerator();
-//		game.newCardConcat();
-//		
-//		UnusedDeck deck = new UnusedDeck();
-//		deck.newDeck(50, 3);
-//		
-//		int size = deck.getCards().size();
-//		
-//		for (int i = 0; i < size; i++) {
-//			System.out.println(deck.getCards().get(i));
-//		}
+		BaseGame game = new BaseGame(numPlayers);
+
+		// CardGenerator game = new CardGenerator();
+		// game.newCardConcat();
+		//
+		// UnusedDeck deck = new UnusedDeck();
+		// deck.newDeck(50, 3);
+		//
+		// int size = deck.getCards().size();
+		//
+		// for (int i = 0; i < size; i++) {
+		// System.out.println(deck.getCards().get(i));
+		// }
 
 		for (Integer i = 1; i <= numPlayers; i++) {
 			Player Alpha = new Player(i.toString(), new Hand(10), i);
@@ -37,16 +39,18 @@ public class UnoTester {
 
 			name = name.concat(": ").concat(user);
 			Alpha.setName(name);
+
+			game.addPlayer(Alpha);
+
 			Alpha.getName();
 			ArrayList<Card> testCardInHand = Alpha.getHand().getCardInHand();
 			System.out.print("\n" + Alpha.toString());
-			
-			for (int j = 0; j < testCardInHand.size(); j++) {
-				System.out.print(testCardInHand.get(j).getColor() + " " + testCardInHand.get(j).getNumber()+ " ");
-			}
-			
+
 			System.out.println("\n");
 		}
+
+		// game.getPlayer();
+		game.playGame(1, 10, 0);
 
 	}
 }

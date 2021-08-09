@@ -44,15 +44,15 @@ public class CardGenerator {
 		Random rand = new Random();
 		return values.get(rand.nextInt(9));
 	}
-	
+
 	public String newRegularCard() {
 		String card = getRandomColor().concat(Integer.toString(getRandomValue()));
-		//System.out.println(card);
+		// System.out.println(card);
 		return card;
 	}
-	
+
 	public String newSpecialCard() {
-		//String card = 
+		// String card =
 		return null;
 	}
 

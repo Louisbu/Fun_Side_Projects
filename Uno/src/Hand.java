@@ -2,11 +2,11 @@
 import java.util.*;
 
 public class Hand {
-	
+
 	private ArrayList<Card> hand;
 	CardGenerator cardGen = new CardGenerator();
 	private int handSize;
-	
+
 	public Hand(int handSize) {
 		this.handSize = handSize;
 		hand = new ArrayList<Card>(handSize);
@@ -20,19 +20,22 @@ public class Hand {
 		for (int i = 0; i < handSize; i++) {
 			hand.add(new Card(cardGen.newRegularCard()));
 		}
-		
+
 		Collections.sort(hand);
 	}
-	
+
 	public ArrayList<Card> getCardInHand() {
 		return hand;
 	}
-	
+
+	public void setCardInHand(ArrayList<Card> newHand) {
+		this.hand = newHand;
+	}
+
 	public String toString() {
 		String str = hand.get(0).toString();
 		for (int i = 1; i < hand.size(); i++) {
-			str.concat(hand.get(i).toString());
-			str.concat(", ");
+			str = str.concat(hand.get(i).toString());
 		}
 		return str;
 	}

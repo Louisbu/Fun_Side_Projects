@@ -45,27 +45,43 @@ public class Player extends BaseGame {
 		for (int i = 0; i < currentCardsInHand.size(); i++) {
 			Card tempCard = currentCardsInHand.get(i);
 
-			if (tempCard.matchColor(previousPlay) || tempCard.matchNumber(previousPlay)) {
+			if (tempCard.matchColor(previousPlay)
+					|| tempCard.matchNumber(previousPlay)) {
 				playableCards.add(tempCard);
 			}
+		}
+
+		if (playableCards.size() == 0) {
+			drawCardFromDeck();
+			checkPlayableCardinHand(previousPlay);
 		}
 		return playableCards;
 	}
 
-	public Card playCardInHand(ArrayList<Card> playableCards) {
+	public Card playCardInHand(
+			Card previousPlay/* ArrayList<Card> playableCards */) {
+
+		ArrayList<Card> playableCards = checkPlayableCardinHand(previousPlay);
+
 		Card temp = null;
 		int index;
 		Scanner sc = new Scanner(System.in);
+		System.out.println(
+				"Previosly Played Card is: " + previousPlay.toString() + "\n");
 		if (playableCards.size() != 0) {
-			System.out.println("Here are the playable Cards: \n");
+			System.out.println(
+					"This is your hand, and the playable Cards are listed below: ");
+			System.out.println(this.toString());
+
+			System.out.print("\n");
 			for (int i = 0; i < playableCards.size(); i++) {
 				System.out.print(playableCards.get(i).toString());
 			}
 
 			System.out.println("Please pick a card to play.");
-			index = sc.nextInt() + 1;
+			index = sc.nextInt() - 1;
 
-			if (index <= playableCards.size() && index > 1) {
+			if (index < playableCards.size() && index >= 0) {
 				temp = playableCards.get(index);
 				playableCards.clear();
 				hand.getCardInHand().remove(temp);
@@ -73,24 +89,41 @@ public class Player extends BaseGame {
 			return temp;
 
 		} else {
+			System.out.println("This is your hand: ");
+			System.out.println(this.toString());
 			System.out.println("You don't have any cards to play.");
+			// Card nullCard = new Card("Purple0");
+			// temp = nullCard;
+			drawCardFromDeck();
 			return temp;
 		}
 
 	}
 
 	public void drawCardFromDeck() {
-		hand.getCardInHand();
+		ArrayList<Card> cardsInHand = hand.getCardInHand();
+		System.out.println("You are now drawing cards from the deck: ");
+		while (playCardInHand(previousPlay) != null) {
+			Card temp = getDeck().drawCard();
+			System.out.println("You drew: " + temp.toString());
+
+			cardsInHand.add(temp);
+			hand.setCardInHand(cardsInHand);
+		}
+
 	}
 
 	public String toString() {
 		String str = name + "\n";
 
-		for (int i = 0; i < hand.getCardInHand().size() - 2; i++) {
-			str.concat(hand.getCardInHand().get(i).toString()).concat(", ");
-		}
-		str.concat(hand.getCardInHand().get(hand.getCardInHand().size() - 1).toString());
-		str.concat(". ");
+		// for (int i = 0; i < hand.getCardInHand().size() - 2; i++) {
+		// str.concat(hand.toString()).concat(", ");
+		// }
+		// str.concat(hand.getCardInHand().get(hand.getCardInHand().size() -
+		// 1).toString());
+		// str.concat(". ");
+
+		str = str.concat(hand.toString());
 
 		return str;
 	}
