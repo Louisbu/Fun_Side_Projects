@@ -48,7 +48,7 @@ public class ConnectFourTester {
 		
 		for (int i = 0; i < 6; i++) {
 			if (board[slot][i] == player) {
-				System.out.println(board[slot][i]]);
+				System.out.println(board[slot][i]);
 			}
 		}
 
