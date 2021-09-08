@@ -57,4 +57,10 @@ public class threeNPlusOne {
 
 		f.close();
 	}
+
+	public static int[] differences(int a) {
+		int[] temp = new int[a];
+
+		return temp;
+	}
 }
